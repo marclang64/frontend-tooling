@@ -1,88 +1,219 @@
 # Frontend Tooling
 
-Reusable configurations for consistent formatting, linting, type safety and automated code quality in modern frontend projects.
+Reusable configurations for consistent formatting, linting, type safety, and automated code quality in modern frontend projects.
 
 ## Overview
 
-Frontend Tooling provides a collection of reusable configurations and development tools for JavaScript, TypeScript, React, CSS and SCSS projects.
+Frontend Tooling provides a collection of reusable, opinionated configurations for JavaScript, TypeScript, React, CSS, and SCSS projects.
 
-The goal is to establish consistent coding standards, improve code quality and simplify the setup of new projects.
+The goal is to establish consistent coding standards, improve code quality, and reduce repetitive setup across projects.
 
-## Tooling
+The configurations can be used independently or combined depending on the project's requirements.
 
-| Tool           | Purpose                           | Status    |
-| -------------- | --------------------------------- | --------- |
-| EditorConfig   | Consistent editor settings        | Available |
-| Prettier       | Automated code formatting         | Available |
-| ESLint         | JavaScript and TypeScript linting | Planned   |
-| Stylelint      | CSS and SCSS linting              | Planned   |
-| TypeScript     | Strict type checking              | Planned   |
-| GitHub Actions | Automated quality checks          | Planned   |
+## Features
 
-## Getting Started
+| Tool              | Purpose                                     |
+| ----------------- | ------------------------------------------- |
+| EditorConfig      | Consistent editor settings                  |
+| Prettier          | Automated code formatting                   |
+| ESLint            | JavaScript, TypeScript, and React linting   |
+| Stylelint         | CSS and SCSS linting                        |
+| TypeScript        | Strict type checking                        |
+| GitHub Actions    | Automated quality checks                    |
+| Integration Tests | Validation of the packaged npm distribution |
 
-### Prerequisites
+## Installation
 
-- Node.js
-- npm
+The package is designed to be installed as a development dependency.
 
-### Installation
-
-Clone the repository and install the dependencies:
+Once published to npm:
 
 ```bash
-git clone https://github.com/marclang64/frontend-tooling.git
-cd frontend-tooling
-npm install
+npm install --save-dev @marclang64/frontend-tooling
 ```
 
-### Code Formatting
-
-Prettier is configured to provide consistent formatting across supported file types.
-
-Format all files:
+Install the tools required by your project:
 
 ```bash
-npm run format
+npm install --save-dev eslint@^9 prettier@^3 typescript@^6 stylelint@^18
 ```
 
-Check formatting without modifying files:
+Only install the tools you intend to use. The package provides their configurations, not a replacement for the tools themselves.
+
+Until the package is published, it can be installed from a local package archive.
+
+## Configuration
+
+### ESLint
+
+Provides modular configurations for JavaScript, TypeScript, and React.
+
+Create `eslint.config.mjs`:
+
+```javascript
+import { base, typescript, react } from '@marclang64/frontend-tooling/eslint';
+
+export default [...base, ...typescript, ...react];
+```
+
+For projects without React:
+
+```javascript
+import { base, typescript } from '@marclang64/frontend-tooling/eslint';
+
+export default [...base, ...typescript];
+```
+
+Run ESLint:
 
 ```bash
-npm run format:check
+npx eslint .
 ```
 
-### Configuration
+The configuration includes recommended rules and additional conventions for code quality.
 
-The Prettier configuration is located at:
+### Prettier
 
-`configs/prettier.config.mjs`
+Create `prettier.config.mjs`:
 
-Current conventions include:
+```javascript
+export { default } from '@marclang64/frontend-tooling/prettier';
+```
 
-- 4 spaces for indentation
-- Single quotes in JavaScript and TypeScript
+Format your project:
+
+```bash
+npx prettier --write .
+```
+
+Check formatting:
+
+```bash
+npx prettier --check .
+```
+
+The configuration includes:
+
+- 4-space indentation
+- Single quotes
 - Semicolons
 - Trailing commas where supported
 - 100-character preferred line width
 - LF line endings
 
-General editor conventions are defined in `.editorconfig`.
+### TypeScript
+
+Create `tsconfig.json`:
+
+```json
+{
+    "extends": "@marclang64/frontend-tooling/typescript",
+    "compilerOptions": {
+        "lib": ["ES2022", "DOM"]
+    },
+    "include": ["src"]
+}
+```
+
+The base configuration enables strict type checking and additional compiler checks.
+
+Project-specific options, such as JSX support, can be added as needed.
+
+Run the TypeScript compiler:
+
+```bash
+npx tsc --noEmit
+```
+
+### Stylelint
+
+Create `stylelint.config.mjs`:
+
+```javascript
+export { default } from '@marclang64/frontend-tooling/stylelint';
+```
+
+Run Stylelint:
+
+```bash
+npx stylelint "src/**/*.{css,scss}"
+```
+
+The configuration extends standard SCSS rules and includes additional conventions, such as disallowing named colors and `!important` declarations.
+
+## Development
+
+To contribute to or modify the configurations, clone the repository:
+
+```bash
+git clone https://github.com/marclang64/frontend-tooling.git
+cd frontend-tooling
+npm ci
+```
+
+### Available Scripts
+
+| Command                    | Description                                  |
+| -------------------------- | -------------------------------------------- |
+| `npm run lint`             | Run ESLint                                   |
+| `npm run lint:fix`         | Automatically fix supported ESLint issues    |
+| `npm run format`           | Format files with Prettier                   |
+| `npm run format:check`     | Check formatting without modifying files     |
+| `npm run typecheck`        | Run TypeScript checks                        |
+| `npm run stylelint`        | Run Stylelint                                |
+| `npm run stylelint:fix`    | Automatically fix supported Stylelint issues |
+| `npm run test:integration` | Test the packaged npm distribution           |
+
+### Integration Tests
+
+Integration tests validate the package in an isolated consumer project.
+
+The test suite:
+
+1. Creates an npm package archive using `npm pack`.
+2. Installs the archive into a temporary project.
+3. Imports each exported configuration.
+4. Verifies expected ESLint, Prettier, TypeScript, and Stylelint behavior.
+5. Removes the temporary project.
+
+Run the tests:
+
+```bash
+npm run test:integration
+```
+
+### Continuous Integration
+
+GitHub Actions automatically runs code quality checks, integration tests, and package validation on pushes and pull requests.
+
+This helps ensure that changes do not break existing configurations or the packaged distribution.
 
 ## Project Structure
 
 ```text
 frontend-tooling/
+├── .github/
+│   └── workflows/
+│       └── ci.yml
 ├── configs/
-│   └── prettier.config.mjs
+│   ├── eslint/
+│   │   ├── base.mjs
+│   │   ├── index.mjs
+│   │   ├── react.mjs
+│   │   └── typescript.mjs
+│   ├── typescript/
+│   │   └── tsconfig.base.json
+│   ├── prettier.config.mjs
+│   └── stylelint.config.mjs
 ├── examples/
+│   ├── react/
+│   ├── scss/
 │   └── vanilla-ts/
-│       └── example.ts
-├── .editorconfig
-├── .gitignore
-├── .prettierignore
+├── tests/
+│   └── integration/
+│       └── package.test.mjs
+├── eslint.config.mjs
 ├── package.json
-├── package-lock.json
 └── README.md
 ```
 
@@ -90,12 +221,14 @@ frontend-tooling/
 
 - [x] EditorConfig
 - [x] Prettier configuration
-- [ ] ESLint configuration
-- [ ] Stylelint configuration
-- [ ] TypeScript configuration
-- [ ] Automated quality checks with GitHub Actions
-- [ ] Reusable configuration exports
-- [ ] Example projects
+- [x] Modular ESLint configuration
+- [x] Stylelint configuration
+- [x] TypeScript base configuration
+- [x] Reusable package exports
+- [x] Example projects
+- [x] Automated quality checks with GitHub Actions
+- [x] Package integration tests
+- [ ] Publish package to npm
 
 ## License
 
