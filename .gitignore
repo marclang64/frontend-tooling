@@ -6,6 +6,9 @@ dist/
 build/
 coverage/
 
+# npm package archives
+*.tgz
+
 # Environment variables
 .env
 .env.local
