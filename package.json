@@ -1,8 +1,15 @@
 {
-  "name": "frontend-tooling",
-  "version": "0.1.0",
-  "private": true,
-  "type": "module",
-  "description": "reusable configurations for modern frontend development.",
-  "license": "MIT"
+    "name": "frontend-tooling",
+    "version": "0.1.0",
+    "private": true,
+    "type": "module",
+    "description": "reusable configurations for modern frontend development.",
+    "license": "MIT",
+    "scripts": {
+        "format": "prettier --config configs/prettier.config.mjs --write .",
+        "format:check": "prettier --config configs/prettier.config.mjs --check ."
+    },
+    "devDependencies": {
+        "prettier": "^3.10.1"
+    }
 }
