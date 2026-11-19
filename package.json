@@ -7,9 +7,22 @@
     "license": "MIT",
     "scripts": {
         "format": "prettier --config configs/prettier.config.mjs --write .",
-        "format:check": "prettier --config configs/prettier.config.mjs --check ."
+        "format:check": "prettier --config configs/prettier.config.mjs --check .",
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix",
+        "typecheck": "tsc --project examples/vanilla-ts/tsconfig.json && tsc --project examples/react/tsconfig.json"
     },
     "devDependencies": {
-        "prettier": "^3.10.1"
+        "@eslint/js": "^9.39.5",
+        "@types/react": "^19.3.0",
+        "eslint": "^9.39.5",
+        "eslint-config-prettier": "^10.1.8",
+        "eslint-plugin-react": "^7.37.5",
+        "eslint-plugin-react-hooks": "^7.1.1",
+        "globals": "^17.14.0",
+        "prettier": "^3.10.1",
+        "react": "^19.3.1",
+        "typescript": "^6.0.3",
+        "typescript-eslint": "^8.73.0"
     }
 }
