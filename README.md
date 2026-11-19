@@ -24,23 +24,17 @@ The configurations can be used independently or combined depending on the projec
 
 ## Installation
 
-The package is designed to be installed as a development dependency.
-
-Once published to npm:
+Install the package directly from GitHub:
 
 ```bash
-npm install --save-dev @marclang64/frontend-tooling
+npm install --save-dev github:marclang64/frontend-tooling#v0.1.0
 ```
 
-Install the tools required by your project:
+The package provides reusable configurations for ESLint, Prettier, TypeScript, and Stylelint.
 
-```bash
-npm install --save-dev eslint@^9 prettier@^3 typescript@^6 stylelint@^18
-```
+Install the required tooling and peer dependencies according to your project's needs.
 
-Only install the tools you intend to use. The package provides their configurations, not a replacement for the tools themselves.
-
-Until the package is published, it can be installed from a local package archive.
+See the Configuration section for usage examples.
 
 ## Configuration
 
@@ -216,19 +210,6 @@ frontend-tooling/
 ├── package.json
 └── README.md
 ```
-
-## Roadmap
-
-- [x] EditorConfig
-- [x] Prettier configuration
-- [x] Modular ESLint configuration
-- [x] Stylelint configuration
-- [x] TypeScript base configuration
-- [x] Reusable package exports
-- [x] Example projects
-- [x] Automated quality checks with GitHub Actions
-- [x] Package integration tests
-- [ ] Publish package to npm
 
 ## License
 
