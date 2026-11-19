@@ -6,7 +6,8 @@
     "exports": {
         "./eslint": "./configs/eslint/index.mjs",
         "./prettier": "./configs/prettier.config.mjs",
-        "./typescript": "./configs/typescript/tsconfig.base.json"
+        "./typescript": "./configs/typescript/tsconfig.base.json",
+        "./stylelint": "./configs/stylelint.config.mjs"
     },
     "description": "reusable configurations for modern frontend development.",
     "license": "MIT",
@@ -27,21 +28,25 @@
         "prettier": "^3.10.1",
         "react": "^19.3.1",
         "stylelint": "^18.0.0",
-        "stylelint-config-standard-scss": "^18.0.0",
         "typescript": "^6.0.3"
     },
     "dependencies": {
         "@eslint/js": "^9.39.5",
         "eslint-plugin-react": "^7.37.5",
         "eslint-plugin-react-hooks": "^7.1.1",
+        "stylelint-config-standard-scss": "^18.0.0",
         "typescript-eslint": "^8.73.0"
     },
     "peerDependencies": {
         "eslint": "^9.0.0",
-        "typescript": "^6.0.0"
+        "typescript": "^6.0.0",
+        "stylelint": "^18.0.0"
     },
     "peerDependenciesMeta": {
         "typescript": {
+            "optional": true
+        },
+        "stylelint": {
             "optional": true
         }
     }
