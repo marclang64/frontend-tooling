@@ -9,6 +9,9 @@
         "./typescript": "./configs/typescript/tsconfig.base.json",
         "./stylelint": "./configs/stylelint.config.mjs"
     },
+    "files": [
+        "configs/"
+    ],
     "description": "reusable configurations for modern frontend development.",
     "license": "MIT",
     "scripts": {
@@ -18,13 +21,15 @@
         "lint:fix": "eslint . --fix",
         "typecheck": "tsc --project examples/vanilla-ts/tsconfig.json && tsc --project examples/react/tsconfig.json",
         "stylelint": "stylelint \"examples/**/*.{css,scss}\" --config configs/stylelint.config.mjs",
-        "stylelint:fix": "stylelint \"examples/**/*.{css,scss}\" --config configs/stylelint.config.mjs --fix"
+        "stylelint:fix": "stylelint \"examples/**/*.{css,scss}\" --config configs/stylelint.config.mjs --fix",
+        "test:integration": "node --test tests/integration/*.test.mjs"
     },
     "devDependencies": {
         "@types/react": "^19.3.0",
         "eslint": "^9.39.5",
         "eslint-config-prettier": "^10.1.8",
         "globals": "^17.14.0",
+        "npm": "^12.2.3",
         "prettier": "^3.10.1",
         "react": "^19.3.1",
         "stylelint": "^18.0.0",
@@ -39,8 +44,8 @@
     },
     "peerDependencies": {
         "eslint": "^9.0.0",
-        "typescript": "^6.0.0",
-        "stylelint": "^18.0.0"
+        "stylelint": "^18.0.0",
+        "typescript": "^6.0.0"
     },
     "peerDependenciesMeta": {
         "typescript": {
