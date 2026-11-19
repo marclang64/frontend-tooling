@@ -1,0 +1,17 @@
+$primary-color: #552661;
+
+.card {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-color: $primary-color;
+
+    &.title {
+        margin: 0;
+        font-size: 1.25rem;
+    }
+
+    &:hover {
+        background-color: #743582;
+    }
+}
