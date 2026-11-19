@@ -10,14 +10,14 @@ The goal is to establish consistent coding standards, improve code quality and s
 
 ## Tooling
 
-| Tool | Purpose | Status |
-|---|---|---|
-| EditorConfig | Consistent editor settings | Available |
-| Prettier | Automated code formatting | Available |
-| ESLint | JavaScript and TypeScript linting | Planned |
-| Stylelint | CSS and SCSS linting | Planned |
-| TypeScript | Strict type checking | Planned |
-| GitHub Actions | Automated quality checks | Planned |
+| Tool           | Purpose                           | Status    |
+| -------------- | --------------------------------- | --------- |
+| EditorConfig   | Consistent editor settings        | Available |
+| Prettier       | Automated code formatting         | Available |
+| ESLint         | JavaScript and TypeScript linting | Planned   |
+| Stylelint      | CSS and SCSS linting              | Planned   |
+| TypeScript     | Strict type checking              | Planned   |
+| GitHub Actions | Automated quality checks          | Planned   |
 
 ## Getting Started
 

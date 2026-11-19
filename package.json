@@ -1,13 +1,18 @@
 {
-    "name": "frontend-tooling",
+    "name": "@marclang64/frontend-tooling",
     "version": "0.1.0",
     "private": true,
     "type": "module",
+    "exports": {
+        "./eslint": "./configs/eslint/index.mjs",
+        "./prettier": "./configs/prettier.config.mjs",
+        "./typescript": "./configs/typescript/tsconfig.base.json"
+    },
     "description": "reusable configurations for modern frontend development.",
     "license": "MIT",
     "scripts": {
-        "format": "prettier --config configs/prettier.config.mjs --write .",
-        "format:check": "prettier --config configs/prettier.config.mjs --check .",
+        "format": "prettier --write .",
+        "format:check": "prettier --check .",
         "lint": "eslint .",
         "lint:fix": "eslint . --fix",
         "typecheck": "tsc --project examples/vanilla-ts/tsconfig.json && tsc --project examples/react/tsconfig.json",

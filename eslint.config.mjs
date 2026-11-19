@@ -1,5 +1,4 @@
-
-import { base, typescript, react } from './configs/eslint/index.mjs';
+import { base, typescript, react } from '@marclang64/frontend-tooling/eslint';
 import prettier from 'eslint-config-prettier';
 import globals from 'globals';
 
