@@ -1,4 +1,4 @@
-# Frontend Tooling
+# Frontend Tooling [![Version](https://img.shields.io/github/v/tag/marclang64/frontend-tooling?sort=semver&label=version)](https://github.com/marclang64/frontend-tooling/releases)
 
 Reusable configurations for consistent formatting, linting, type safety, and automated code quality in modern frontend projects.
 
