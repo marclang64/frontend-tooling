@@ -83,4 +83,4 @@ Integration tests pack the distribution, install it in an independent temporary 
 
 ## License
 
-MIT.
+MIT
