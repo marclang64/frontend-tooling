@@ -18,7 +18,7 @@ export default [
         },
     },
     {
-        files: ['tests/**/*.mjs'],
+        files: ['tests/**/*.mjs', 'bin/**/*.mjs', 'src/**/*.mjs'],
         languageOptions: {
             globals: globals.node,
         },

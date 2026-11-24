@@ -1,0 +1,25 @@
+[35mconfigs/eslint/react.mjs[m[36m:[m[32m1[m[36m:[mimport react from '[1;31meslint-plugin-react[m';
+[35mconfigs/eslint/react.mjs[m[36m:[m[32m2[m[36m:[mimport reactHooks from '[1;31meslint-plugin-react[m-hooks';
+[35mconfigs/eslint/react.mjs[m[36m:[m[32m31[m[36m:[m            '[1;31mreact/prop-types[m': 'off',
+[35mpackage-lock.json[m[36m:[m[32m16[m[36m:[m                "[1;31meslint-plugin-react[m-hooks": "^7.1.1",
+[35mpackage-lock.json[m[36m:[m[32m562[m[36m:[m                "[1;31meslint-plugin-react[m-dom": "5.30.6",
+[35mpackage-lock.json[m[36m:[m[32m563[m[36m:[m                "[1;31meslint-plugin-react[m-jsx": "5.30.6",
+[35mpackage-lock.json[m[36m:[m[32m564[m[36m:[m                "[1;31meslint-plugin-react[m-naming-convention": "5.30.6",
+[35mpackage-lock.json[m[36m:[m[32m565[m[36m:[m                "[1;31meslint-plugin-react[m-rsc": "5.30.6",
+[35mpackage-lock.json[m[36m:[m[32m566[m[36m:[m                "[1;31meslint-plugin-react[m-web-api": "5.30.6",
+[35mpackage-lock.json[m[36m:[m[32m567[m[36m:[m                "[1;31meslint-plugin-react[m-x": "5.30.6"
+[35mpackage-lock.json[m[36m:[m[32m1509[m[36m:[m        "node_modules/[1;31meslint-plugin-react[m-dom": {
+[35mpackage-lock.json[m[36m:[m[32m1511[m[36m:[m            "resolved": "https://registry.npmjs.org/[1;31meslint-plugin-react[m-dom/-/[1;31meslint-plugin-react[m-dom-5.30.6.tgz",
+[35mpackage-lock.json[m[36m:[m[32m1538[m[36m:[m        "node_modules/[1;31meslint-plugin-react[m-hooks": {
+[35mpackage-lock.json[m[36m:[m[32m1540[m[36m:[m            "resolved": "https://registry.npmjs.org/[1;31meslint-plugin-react[m-hooks/-/[1;31meslint-plugin-react[m-hooks-7.1.1.tgz",
+[35mpackage-lock.json[m[36m:[m[32m1557[m[36m:[m        "node_modules/[1;31meslint-plugin-react[m-jsx": {
+[35mpackage-lock.json[m[36m:[m[32m1559[m[36m:[m            "resolved": "https://registry.npmjs.org/[1;31meslint-plugin-react[m-jsx/-/[1;31meslint-plugin-react[m-jsx-5.30.6.tgz",
+[35mpackage-lock.json[m[36m:[m[32m1584[m[36m:[m        "node_modules/[1;31meslint-plugin-react[m-naming-convention": {
+[35mpackage-lock.json[m[36m:[m[32m1586[m[36m:[m            "resolved": "https://registry.npmjs.org/[1;31meslint-plugin-react[m-naming-convention/-/[1;31meslint-plugin-react[m-naming-convention-5.30.6.tgz",
+[35mpackage-lock.json[m[36m:[m[32m1612[m[36m:[m        "node_modules/[1;31meslint-plugin-react[m-rsc": {
+[35mpackage-lock.json[m[36m:[m[32m1614[m[36m:[m            "resolved": "https://registry.npmjs.org/[1;31meslint-plugin-react[m-rsc/-/[1;31meslint-plugin-react[m-rsc-5.30.6.tgz",
+[35mpackage-lock.json[m[36m:[m[32m1639[m[36m:[m        "node_modules/[1;31meslint-plugin-react[m-web-api": {
+[35mpackage-lock.json[m[36m:[m[32m1641[m[36m:[m            "resolved": "https://registry.npmjs.org/[1;31meslint-plugin-react[m-web-api/-/[1;31meslint-plugin-react[m-web-api-5.30.6.tgz",
+[35mpackage-lock.json[m[36m:[m[32m1667[m[36m:[m        "node_modules/[1;31meslint-plugin-react[m-x": {
+[35mpackage-lock.json[m[36m:[m[32m1669[m[36m:[m            "resolved": "https://registry.npmjs.org/[1;31meslint-plugin-react[m-x/-/[1;31meslint-plugin-react[m-x-5.30.6.tgz",
+[35mpackage.json[m[36m:[m[32m41[m[36m:[m        "[1;31meslint-plugin-react[m-hooks": "^7.1.1",

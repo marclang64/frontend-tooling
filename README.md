@@ -1,216 +1,86 @@
 # Frontend Tooling [![Version](https://img.shields.io/github/v/tag/marclang64/frontend-tooling?sort=semver&label=version)](https://github.com/marclang64/frontend-tooling/releases)
 
-Reusable configurations for consistent formatting, linting, type safety, and automated code quality in modern frontend projects.
+Reusable frontend quality tools and project initializer for JavaScript, TypeScript, React, CSS and SCSS.
 
-## Overview
+## Requirements
 
-Frontend Tooling provides a collection of reusable, opinionated configurations for JavaScript, TypeScript, React, CSS, and SCSS projects.
-
-The goal is to establish consistent coding standards, improve code quality, and reduce repetitive setup across projects.
-
-The configurations can be used independently or combined depending on the project's requirements.
-
-## Features
-
-| Tool              | Purpose                                     |
-| ----------------- | ------------------------------------------- |
-| EditorConfig      | Consistent editor settings                  |
-| Prettier          | Automated code formatting                   |
-| ESLint            | JavaScript, TypeScript, and React linting   |
-| Stylelint         | CSS and SCSS linting                        |
-| TypeScript        | Strict type checking                        |
-| GitHub Actions    | Automated quality checks                    |
-| Integration Tests | Validation of the packaged npm distribution |
+Node.js 24.15+ (recommended), or another version matching `^22.22.2 || ^24.15.0 || >=26.0.0`.
 
 ## Installation
 
-Install the package directly from GitHub:
+After publishing the v1.0.0 tag, install in an existing project containing `package.json`:
 
 ```bash
-npm install --save-dev github:marclang64/frontend-tooling#v0.1.0
+npm install -D github:marclang64/frontend-tooling#v1.0.0
+npx frontend-tooling init
 ```
 
-The package provides reusable configurations for ESLint, Prettier, TypeScript, and Stylelint.
+ESLint, Prettier, TypeScript, Stylelint and their configuration dependencies are installed automatically. React and React type declarations remain application dependencies.
 
-Install the required tooling and peer dependencies according to your project's needs.
+## Initialization
 
-See the Configuration section for usage examples.
+The CLI asks for a language (JavaScript or TypeScript), framework (Vanilla or React), and styles (none, CSS or SCSS). For unattended setup:
 
-## Configuration
+```bash
+npx frontend-tooling init --typescript --react --scss --yes
+```
 
-### ESLint
+Without a terminal or with `--yes`, unspecified options default to JavaScript, Vanilla and no styles. Conflicting flags are rejected. The initializer does not scaffold application source files or install a framework.
 
-Provides modular configurations for JavaScript, TypeScript, and React.
+It creates ESLint and Prettier configs, optional TypeScript and Stylelint configs, EditorConfig, and adds missing ignore rules, Git attributes and npm scripts. Existing recognized configuration files and scripts are preserved. Repeated initialization with the same options does not duplicate entries. Switching profiles does not replace existing configs; adjust them manually. Existing Git rules are checked by exact line, not semantic equivalence; review conflicting attributes or ignore exceptions. Legacy ESLint configs are preserved but may require migration to flat config.
 
-Create `eslint.config.mjs`:
+## Scripts
 
-```javascript
+| Script                  | Purpose                                |
+| ----------------------- | -------------------------------------- |
+| `npm run lint`          | ESLint                                 |
+| `npm run lint:fix`      | ESLint autofix                         |
+| `npm run format`        | Prettier formatting                    |
+| `npm run format:check`  | Check formatting                       |
+| `npm run typecheck`     | TypeScript (TypeScript profile only)   |
+| `npm run stylelint`     | CSS/SCSS linting (styles profile only) |
+| `npm run stylelint:fix` | CSS/SCSS autofix (styles profile only) |
+
+Type checking requires actual TypeScript source files. React projects must supply their own React dependencies. Generated ESLint globals target browser applications and Node configuration/scripts; customize for other environments.
+
+## Manual configuration
+
+The original exports remain available:
+
+```js
 import { base, typescript, react } from '@marclang64/frontend-tooling/eslint';
+import { browser, prettier } from '@marclang64/frontend-tooling/eslint/environment';
 
-export default [...base, ...typescript, ...react];
+export default [
+    ...base,
+    ...typescript,
+    ...react,
+    { languageOptions: { globals: browser } },
+    prettier,
+];
 ```
 
-For projects without React:
+Prettier: `export { default } from '@marclang64/frontend-tooling/prettier';`
 
-```javascript
-import { base, typescript } from '@marclang64/frontend-tooling/eslint';
+TypeScript: extend `@marclang64/frontend-tooling/typescript` in `tsconfig.json`.
 
-export default [...base, ...typescript];
-```
-
-Run ESLint:
-
-```bash
-npx eslint .
-```
-
-The configuration includes recommended rules and additional conventions for code quality.
-
-### Prettier
-
-Create `prettier.config.mjs`:
-
-```javascript
-export { default } from '@marclang64/frontend-tooling/prettier';
-```
-
-Format your project:
-
-```bash
-npx prettier --write .
-```
-
-Check formatting:
-
-```bash
-npx prettier --check .
-```
-
-The configuration includes:
-
-- 4-space indentation
-- Single quotes
-- Semicolons
-- Trailing commas where supported
-- 100-character preferred line width
-- LF line endings
-
-### TypeScript
-
-Create `tsconfig.json`:
-
-```json
-{
-    "extends": "@marclang64/frontend-tooling/typescript",
-    "compilerOptions": {
-        "lib": ["ES2022", "DOM"]
-    },
-    "include": ["src"]
-}
-```
-
-The base configuration enables strict type checking and additional compiler checks.
-
-Project-specific options, such as JSX support, can be added as needed.
-
-Run the TypeScript compiler:
-
-```bash
-npx tsc --noEmit
-```
-
-### Stylelint
-
-Create `stylelint.config.mjs`:
-
-```javascript
-export { default } from '@marclang64/frontend-tooling/stylelint';
-```
-
-Run Stylelint:
-
-```bash
-npx stylelint "src/**/*.{css,scss}"
-```
-
-The configuration extends standard SCSS rules and includes additional conventions, such as disallowing named colors and `!important` declarations.
+Stylelint: export the default from `@marclang64/frontend-tooling/stylelint` for SCSS or `@marclang64/frontend-tooling/stylelint/css` for CSS.
 
 ## Development
 
-To contribute to or modify the configurations, clone the repository:
-
 ```bash
-git clone https://github.com/marclang64/frontend-tooling.git
-cd frontend-tooling
-npm ci
-```
-
-### Available Scripts
-
-| Command                    | Description                                  |
-| -------------------------- | -------------------------------------------- |
-| `npm run lint`             | Run ESLint                                   |
-| `npm run lint:fix`         | Automatically fix supported ESLint issues    |
-| `npm run format`           | Format files with Prettier                   |
-| `npm run format:check`     | Check formatting without modifying files     |
-| `npm run typecheck`        | Run TypeScript checks                        |
-| `npm run stylelint`        | Run Stylelint                                |
-| `npm run stylelint:fix`    | Automatically fix supported Stylelint issues |
-| `npm run test:integration` | Test the packaged npm distribution           |
-
-### Integration Tests
-
-Integration tests validate the package in an isolated consumer project.
-
-The test suite:
-
-1. Creates an npm package archive using `npm pack`.
-2. Installs the archive into a temporary project.
-3. Imports each exported configuration.
-4. Verifies expected ESLint, Prettier, TypeScript, and Stylelint behavior.
-5. Removes the temporary project.
-
-Run the tests:
-
-```bash
+npm install
+npm run format
+npm run lint
+npm run format:check
+npm run typecheck
+npm run stylelint
 npm run test:integration
+npm pack --dry-run
 ```
 
-### Continuous Integration
-
-GitHub Actions automatically runs code quality checks, integration tests, and package validation on pushes and pull requests.
-
-This helps ensure that changes do not break existing configurations or the packaged distribution.
-
-## Project Structure
-
-```text
-frontend-tooling/
-├── .github/
-│   └── workflows/
-│       └── ci.yml
-├── configs/
-│   ├── eslint/
-│   │   ├── base.mjs
-│   │   ├── index.mjs
-│   │   ├── react.mjs
-│   │   └── typescript.mjs
-│   ├── typescript/
-│   │   └── tsconfig.base.json
-│   ├── prettier.config.mjs
-│   └── stylelint.config.mjs
-├── examples/
-│   ├── react/
-│   ├── scss/
-│   └── vanilla-ts/
-├── tests/
-│   └── integration/
-│       └── package.test.mjs
-├── eslint.config.mjs
-├── package.json
-└── README.md
-```
+Integration tests pack the distribution, install it in an independent temporary project without manually installing quality tools, verify lint/format/type checks, and exercise the installed CLI. Initializer tests cover configuration selection, preservation and idempotence.
 
 ## License
 
-MIT
+MIT.
